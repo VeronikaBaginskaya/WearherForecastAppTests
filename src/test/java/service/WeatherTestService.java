@@ -40,6 +40,16 @@ public class WeatherTestService {
                 .then().extract().jsonPath().get("current");
     }
 
+    public Integer getWeatherResponseError(String accessKey, String accessKeyValue, String query, String city) {
+        return RestAssured.given()
+                .baseUri(URL)
+                .basePath(BASE_PATH)
+                .queryParam(accessKey, accessKeyValue)
+                .queryParam(query, city)
+                .log().uri()
+                .when().get()
+                .then().extract().path("error.code");
 
 
+    }
 }

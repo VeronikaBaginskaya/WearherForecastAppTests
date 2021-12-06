@@ -8,7 +8,7 @@ import spock.lang.*
 
 @Title("Позитивные тесты для получения прогноза погоды по городам")
 
-class WeatherForecastTest extends Specification {
+class WeatherForecastStatusAndBodyTest extends Specification {
     @Shared
     def weatherRequestByCity;
     @Shared
@@ -28,15 +28,15 @@ class WeatherForecastTest extends Specification {
     ExpectedResponseCurrentValuesService expectedCurrentValuesSService = new ExpectedResponseCurrentValuesService();
 
 
-//    def "Успешно возвращается прогноз погоды для города #city со статус кодом 200"() {
-//
-//        expect:
-//        weatherResponseService.getWeatherURL(city).get().statusCode() == 200
-//
-//        where:
-//    city << ["New York", "Moscow", "London", "Abu Dabi"]
+    def "Успешно возвращается прогноз погоды для города #city со статус кодом 200"() {
 
+        expect:
+        weatherResponseService.getWeatherURL(city).get().statusCode() == 200
 
+        where:
+        city << ["New York", "Moscow", "London", "Abu Dabi"]
+
+    }
     def "На GET запрос  погоды - получаем ожидаемые значения keys-values для города #city"() {
 
 
@@ -58,16 +58,6 @@ class WeatherForecastTest extends Specification {
         }
         where:
         city << ["New York", "Moscow", "London", "Abu Dabi"]
-//        response << [weatherRequestByCity]
-//        response
-
-//        city       | response             || expectedResponse
-//        "Moscow"   | weatherRequestByCity || expectedRequestValuesByCity
-//        "New York" | weatherRequestByCity || expectedRequestValuesByCity
-//        "London"   | weatherRequestByCity || expectedRequestValuesByCity
-//        "Abu Dabi" | weatherRequestByCity || expectedRequestValuesByCity
-//
-
     }
 }
 
